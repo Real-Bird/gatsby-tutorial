@@ -1,3 +1,4 @@
+require("dotenv").config();
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
@@ -12,10 +13,21 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     `gatsby-plugin-mdx`,
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: `${__dirname}/blog-posts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `x4i1p3jtk8zm`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
   ],
