@@ -6,7 +6,7 @@ import { graphql, PageProps, Link } from "gatsby";
 const Blog = ({ data }: PageProps<Queries.BlogPostsQuery>) => {
   return (
     <Layout title="Blog">
-      <section>
+      <section className="grid">
         {data.allMdx.nodes.map((file, idx) => (
           <article key={idx}>
             <Link to={`/blog/${file.frontmatter?.slug}`}>
@@ -15,7 +15,6 @@ const Blog = ({ data }: PageProps<Queries.BlogPostsQuery>) => {
                 {file.frontmatter?.author} in: {file.frontmatter?.category}
               </h5>
               <h6>{file.frontmatter?.date}</h6>
-              <hr />
               <p>{file.excerpt}</p>
             </Link>
           </article>
